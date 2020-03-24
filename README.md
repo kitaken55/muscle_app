@@ -1,9 +1,9 @@
-#概要
+# 概要
 Nuxt.jsで作る筋トレ記録管理アプリです。
 APIはバックエンド担当に用意してもらいました。
 https://gitlab.com/quelcode-0-teamb/training-logs-api
 
-#アプリケーションの機能一覧
+# アプリケーションの機能一覧
 ユーザー登録
 ログイン
 種目一覧の取得
