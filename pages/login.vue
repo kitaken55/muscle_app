@@ -1,3 +1,5 @@
+<!-- 未リファクタリング -->
+
 <template>
   <v-app>
     <v-app-bar color="primary" class="elevationyarn add vuejs-datepicker-0" outlined dark app>
@@ -12,10 +14,10 @@
 
     <v-card width="600px" class="elevation-0 pa-3 login-card mx-auto content">
       <v-card-text>
-        <div class="layout column align-center">
-          <h1 class="flex my-4 primary--text font-weight-light">Login</h1>
-        </div>
-        <v-form ref="loginForm">
+        <h1
+          style="text-align: center; font-weight: 400; color: rgba(26, 118, 210, 100); margin: 20px 0; font-size: 35px;"
+        >Sign in</h1>
+        <v-form ref="loginForm" style="margin-top: 30px;">
           <v-text-field
             append-icon="mdi-account"
             name="name"
@@ -35,11 +37,12 @@
             :rules="passwordRules"
             required
           ></v-text-field>
-          <v-layout class="margin_1">
-            <v-spacer></v-spacer>
-            <v-btn block color="primary" @click="loginUser">ログイン</v-btn>
-          </v-layout>
-          <a href="/signUp">>新規登録へ</a>
+          <div @click="loginUser">
+            <long-button>ログイン</long-button>
+          </div>
+          <div style="text-align: center; margin-top: 35px;">
+            <a href="/signUp">>新規登録はこちら</a>
+          </div>
         </v-form>
       </v-card-text>
     </v-card>
@@ -49,6 +52,7 @@
 
 <script>
 import axios from "~/plugins/axios.js";
+import LongButton from "~/components/atom/LongButton";
 export default {
   layout: "start",
   data() {
@@ -69,6 +73,9 @@ export default {
       sign_in_text: "",
       password: ""
     };
+  },
+  components: {
+    LongButton
   },
 
   methods: {
@@ -107,7 +114,6 @@ export default {
 
 
 <style >
-
 .display_sm {
   display: none;
 }

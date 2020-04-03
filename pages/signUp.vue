@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-app-bar color="primary" class="elevationyarn add vuejs-datepicker-0" outlined dark app>
-      <v-toolbar-title class="font-weight-thin display-1" style="font-size: 25px !important;">ムキム記録</v-toolbar-title>
+      <v-toolbar-title
+        class="font-weight-thin display-1"
+        style="font-size: 25px !important; width: 100%; text-align: center;"
+      >ムキム記録</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="display_pc">
         <v-btn class="font-weight-thin title" to="/login" text>ログインへ</v-btn>
@@ -12,9 +15,12 @@
 
     <v-card width="600px" class="elevation-0 pa-3 login-card mx-auto">
       <v-card-text>
-        <div class="layout column align-center">
-          <h1 class="flex my-4 primary--text font-weight-light">Signup</h1>
-        </div>
+        <!-- <div class="layout column align-center">
+          <h1 class="font-size: 35px; font-weight: 100px;">Sign up</h1>
+        </div> -->
+        <h1 style="text-align: center; font-weight: 400; color: rgba(26, 118, 210, 100); margin: 20px 0; font-size: 35px;">
+          Sign up
+        </h1>
         <v-form ref="loginForm">
           <v-text-field
             append-icon="mdi-account"
@@ -56,16 +62,13 @@
             :rules="passwordRules"
             required
           ></v-text-field>
-          <v-radio-group v-model="model.radios" :mandatory="true">
-            <v-radio label="プロフィールを公開する" value="false"></v-radio>
-            <v-radio label="プロフィールを公開しない" value="true"></v-radio>
-          </v-radio-group>
 
-          <v-layout>
-            <v-spacer></v-spacer>
-            <v-btn block color="primary" @click="createUser">新規登録</v-btn>
-          </v-layout>
-          <a href="/login">>ログインへ</a>
+          <div @click="createUser">
+            <long-button>新規登録</long-button> 
+          </div>
+          <div style="text-align: center; margin-top: 35px;">
+            <a href="/login"> >アカウントをお持ちですか？</a>
+          </div>
         </v-form>
       </v-card-text>
     </v-card>
@@ -75,6 +78,7 @@
 
 <script>
 import axios from "~/plugins/axios.js";
+import LongButton from "~/components/atom/LongButton"
 export default {
   layout: "start",
   data: () => ({
@@ -99,6 +103,10 @@ export default {
       radios: "false"
     }
   }),
+
+  components: {
+    LongButton,
+  },
 
   methods: {
     createUser() {
@@ -134,7 +142,7 @@ export default {
           alert(error);
         });
     }
-  },
+  }
 };
 </script>
 

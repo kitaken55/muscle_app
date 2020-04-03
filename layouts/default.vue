@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div v-if="show">
     <v-app>
-      <nuxt style="margin-top: 55px; margin-bottom: 55px;"></nuxt>
+      <nuxt style="padding-top: 55px; padding-bottom: 55px;"></nuxt>
     </v-app>
+    <input type="date" name="" id="">
 
     <!-- ツールバー -->
-    <v-bottom-navigation class="sm-size" color="primary" fixed>
+    <v-bottom-navigation style="padding-left: 20px;" class="sm-size" color="primary" fixed>
       <v-btn value="measurement" to="/home">
         <span>計測</span>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
@@ -45,15 +46,10 @@
         </svg>
       </v-btn>
     </v-bottom-navigation>
-
-    <!-- 浮いてるセカンダリーボタン -->
-    <v-card-text class="floating-menu">
-      <v-fab-transition>
-        <v-btn to="/traning" color="#ff5252" dark fixed right fab nuxt>
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </v-fab-transition>
-    </v-card-text>
+  </div>
+  <div v-else>
+    <p>ブラウザ版は開発中です</p>
+    <p>スマートフォンで再度お試しください。</p>
   </div>
 </template>
 
@@ -67,19 +63,22 @@ export default {
       nav_lists: [
         { name: "マイページ", icon: "mdi-vuetify", route: "/mypage/edit" },
         { name: "ログアウト", icon: "mdi-cogs", route: "/mypage/logout" }
-      ]
+      ],
+      show: null
     };
   },
-  beforeCreate() {
-    console.log("before");
-    //Cookie無かったら戻す。
-    // if (this.$cookies.get("login_cookie")) {
-    //   this.$router.push("/signUp");
-    // }
+  methods: {
+    showPage() {
+      if (window.innerWidth <= 420) {
+        this.show = true;
+      } else {
+        this.show = false;
+      }
+    }
+  },
+  created() {
+    this.showPage();
   }
-  // components: {
-  //   headerComponent
-  // }
 };
 </script>
 

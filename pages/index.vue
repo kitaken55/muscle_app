@@ -1,7 +1,10 @@
+<!-- BEMにしてない・修正してない -->
+
 <template style="background: black">
+
   <v-app>
     <v-app-bar color="rgba(0,0,0,0.2)" class="elevation-0" outlined dark app>
-      <v-toolbar-title class="font-weight-thin display-1" style="font-size: 25px !important;">ムキム記録</v-toolbar-title>
+      <v-toolbar-title class="font-weight-thin display-1" style="font-size: 25px !important; width: 100%; text-align: center;">ムキム記録</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="display_pc">
         <v-btn class="font-weight-thin title" nuxt to="/singUp" text>新規登録</v-btn>
@@ -18,7 +21,7 @@
           <v-btn class="new_create" sytle="text-decoration: none;">新規登録</v-btn>
         </nuxt-link>
         <nuxt-link to="login">
-          <v-btn class="login deep-orange accent-4 white--text">ログイン</v-btn>
+          <v-btn class="login blue accent-4 white--text">ログイン</v-btn>
         </nuxt-link>
       </div>
     </div>

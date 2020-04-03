@@ -24,9 +24,9 @@
       </v-container>
     </v-navigation-drawer>
 
-    <v-app-bar color="primary" dark app clipped-left>
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>
+    <v-app-bar color="primary" dark app clipped-left class="elevation-2">
+    <v-app-bar-nav-icon style="position: absolute" @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title style="font-size: 25px; width: 100%; text-align: center">
         <slot></slot>
       </v-toolbar-title>
     </v-app-bar>

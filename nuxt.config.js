@@ -15,7 +15,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
   },
   router: {
     middleware: 'redirect'
@@ -37,12 +37,14 @@ export default {
       src: '@/plugins/vue-chartjs',
       ssr: false,
     },
+    { src: '~/plugins/main.js' }
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     '@nuxtjs/vuetify',
+    'nuxt-webfontloader'
   ],
   /*
   ** Nuxt.js modules

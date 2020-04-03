@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Chart from "./graf_test2"
+import Chart from "./graf_test2";
 export default {
   data() {
     return {

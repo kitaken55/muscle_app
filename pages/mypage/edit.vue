@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <headerComponent>編集</headerComponent>
+    
     <v-card width="600px" class="elevation-0 pa-3 login-card mx-auto content">
       <v-card-text>
         <div class="layout column align-center">
@@ -142,6 +143,7 @@ export default {
         }
       })
       .then(response => {
+        console.log(response, "あしんくでーた");
         return {
           id: response.data.id,
           name: response.data.name,
