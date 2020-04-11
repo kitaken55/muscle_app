@@ -10,7 +10,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .longButton {
   width: 100%;
   height: 42px;

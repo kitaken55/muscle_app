@@ -2,9 +2,9 @@
   <!-- モーダル -->
   <div id="overlay" @click="clickEvent">
     <div class="content" @click="stopEvent">
-      <modal-input class="content_marginBottom" title="体重" unit="kg"></modal-input>
-      <modal-input class="content_marginBottom" title="体脂肪率" unit="%"></modal-input>
-      <modal-input class="content_marginBottom" title="摂取カロリー" unit="kcol"></modal-input>
+      <modal-input class="content_marginBottom" title="肩" unit="cm"></modal-input>
+      <modal-input class="content_marginBottom" title="胸" unit="cm"></modal-input>
+      <modal-input class="content_marginBottom" title="腰" unit="cm"></modal-input>
       <modal-button class="content_marginTop"></modal-button>
     </div>
   </div>
@@ -14,7 +14,7 @@
 export default {
   methods: {
     clickEvent() {
-      this.$emit("from-child");
+      this.$emit("from-child2");
     },
     stopEvent() {
       event.stopPropagation();

@@ -1,39 +1,43 @@
 <template>
   <div class="app">
     <headerComponent>入力ページ</headerComponent>
-      <switchButton class="app__switchButton"></switchButton>
-      <home-card
-        class="app__homeCard"
-        title="今日の体重測定"
-        item1="体重"
-        item2="体脂肪率"
-        item3="摂取カロリー"
-        input1="kg"
-        input2="%"
-        input3="kcal"
-      ></home-card>
+    <switchButton class="app__switchButton"></switchButton>
+    <home-card
+      class="app__homeCard"
+      title="今日の体重測定"
+      item1="体重"
+      item2="体脂肪率"
+      item3="摂取カロリー"
+      input1="kg"
+      input2="%"
+      input3="kcal"
+      :openModalHandler="openModal"
+    ></home-card>
 
-      <home-card
-        class="app__homeCard"
-        title="今日の身体測定"
-        item1
-        item2="肩"
-        item3="胸"
-        input1="cm"
-        input2="cm"
-        input3="cm"
-      ></home-card>
+    <home-card
+      class="app__homeCard"
+      title="今日の身体測定"
+      item1
+      item2="肩"
+      item3="胸"
+      input1="cm"
+      input2="cm"
+      input3="cm"
+      :openModalHandler="openModal2"
+    ></home-card>
 
-      <div class="app__traningPage-move">
-        <div class="app__traningPage-move__container">
-          <h1>トレーニング記録</h1>
-          <white-long-button class="app__traningPage-move__container_button-margin">入力する</white-long-button>
-        </div>
+    <div class="app__traningPage-move">
+      <div class="app__traningPage-move__container">
+        <h1>トレーニング記録</h1>
+        <white-long-button @click.native="$router.push('traning')" class="app__traningPage-move__container_button-margin">入力する</white-long-button>
       </div>
+    </div>
 
     <button v-on:click="openModal">Click</button>
 
     <open-modal v-if="showContent" @from-child="closeModal"></open-modal>
+    <open-modal2 v-if="showContent2" @from-child2="closeModal2"></open-modal2>
+
   </div>
 </template>
 
@@ -48,6 +52,7 @@ export default {
       dialog2_text: null,
       //モーダル部分
       showContent: false,
+      showContent2: false, //身体測定の方のモーダル
       record_list: [
         {
           body_weight: null, //体重,
@@ -174,21 +179,27 @@ export default {
     openModal: function() {
       this.showContent = true;
     },
+    openModal2: function() {
+      this.showContent2 = true;
+    },
     closeModal() {
       this.showContent = false;
+    },
+    closeModal2() {
+      this.showContent2 = false;
     }
   },
   created() {
-    if (this.$cookies.get("login_cookie")) {
-      const test = JSON.parse(this.$cookies.get("login_cookie"));
-      axios
-        .get(`users/${test.id}/measures`, {
-          headers: {
-            Authorization: `Bearer ${test.token}`
-          }
-        })
-        .then(res => (this.measures_data = res.data));
-    }
+    // if (this.$cookies.get("login_cookie")) {
+    //   const test = JSON.parse(this.$cookies.get("login_cookie"));
+    //   axios
+    //     .get(`users/${test.id}/measures`, {
+    //       headers: {
+    //         Authorization: `Bearer ${test.token}`
+    //       }
+    //     })
+    //     .then(res => (this.measures_data = res.data));
+    // }
   },
   computed: {
     today() {
@@ -206,7 +217,8 @@ export default {
     switchButton: () => import("~/components/Atom/switchButton"),
     homeCard: () => import("~/components/Organisms/homeCard"),
     whiteLongButton: () => import("~/components/atom/whiteLongButton"),
-    openModal: () => import("~/components/Organisms/openModal")
+    openModal: () => import("~/components/Organisms/openModal"),
+    openModal2: () => import("~/components/Organisms/openModal2")
   }
 };
 </script>

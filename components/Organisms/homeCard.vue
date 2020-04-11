@@ -5,7 +5,7 @@
       <card-detail class="homeCard__Container_margin" :item="item1" :input="input1"></card-detail>
       <card-detail class="homeCard__Container_margin" :item="item2" :input="input2"></card-detail>
       <card-detail class="homeCard__Container_margin" :item="item3" :input="input3"></card-detail>
-      <white-long-button>入力する</white-long-button>
+      <white-long-button style="cursor: pointer;" v-on:click.native="openModalHandler">入力する</white-long-button>
     </div>
   </div>
 </template>
@@ -33,12 +33,16 @@ export default {
     },
     input3: {
       type: String
-    }
+    },
+    openModalHandler: {
+      type: Function
+    },
   },
   components: {
     whiteLongButton: () => import("~/components/atom/whiteLongButton"),
     CardDetail: () => import("~/components/Atom/CardDetail")
-  }
+  },
+  methods: {}
 };
 </script>
 

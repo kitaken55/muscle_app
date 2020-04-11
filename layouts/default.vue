@@ -6,8 +6,8 @@
     <input type="date" name="" id="">
 
     <!-- ツールバー -->
-    <v-bottom-navigation style="padding-left: 20px;" class="sm-size" color="primary" fixed>
-      <v-btn value="measurement" to="/home">
+    <v-bottom-navigation class="sm-size" color="primary" fixed>
+      <v-btn style="padding: 0 40px!important;" value="measurement" to="/home">
         <span>計測</span>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
           <path d="M0 0h24v24H0z" fill="none" />
@@ -17,7 +17,7 @@
         </svg>
       </v-btn>
 
-      <v-btn value="traning" to="/traning" active-class>
+      <v-btn style="padding: 0 15px!important;" value="traning" to="/traning" active-class>
         <span>トレーニング</span>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
           <path d="M0 0h24v24H0z" fill="none" />
@@ -27,7 +27,7 @@
         </svg>
       </v-btn>
 
-      <v-btn value="history" to="/routine">
+      <v-btn style="padding: 0 20px!important;" value="history" to="/routine">
         <span style="border-bottom: none;">ルーティン</span>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
           <path
@@ -36,7 +36,7 @@
           <path d="M0 0h24v24H0V0z" fill="none" />
         </svg>
       </v-btn>
-      <v-btn value="timer" to="/timer">
+      <v-btn style="padding: 0 25px!important;" value="timer" to="/timer">
         <span>タイマー</span>
         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
           <path d="M0 0h24v24H0z" fill="none" />
