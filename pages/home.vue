@@ -29,15 +29,17 @@
     <div class="app__traningPage-move">
       <div class="app__traningPage-move__container">
         <h1>トレーニング記録</h1>
-        <white-long-button @click.native="$router.push('traning')" class="app__traningPage-move__container_button-margin">入力する</white-long-button>
+        <white-long-button
+          @click.native="$router.push('traning')"
+          class="app__traningPage-move__container_button-margin"
+        >入力ページへ</white-long-button>
       </div>
     </div>
 
     <button v-on:click="openModal">Click</button>
 
-    <open-modal v-if="showContent" @from-child="closeModal"></open-modal>
+    <open-modal v-if="showContent" @from-child="closeModal" @addWeight="createMeasures(index)"></open-modal>
     <open-modal2 v-if="showContent2" @from-child2="closeModal2"></open-modal2>
-
   </div>
 </template>
 
@@ -89,14 +91,14 @@ export default {
       this.dialog2_text = item;
     },
     //体重計測API
-    async createMeasures() {
+    async createMeasures(emitValue) {
       if (this.$cookies.get("login_cookie")) {
         const test = JSON.parse(this.$cookies.get("login_cookie"));
         const test2 = {
           measure_params: {
-            body_weight: this.record_list.body_weight,
-            fat: this.record_list.fat,
-            calorie: this.record_list.calorie,
+            body_weight: emitValue.weight,
+            fat: emitValue.fat,
+            calorie: emitValue.colorie,
             date: this.today //ここはコンピューテッドでも行ける？
           }
         };

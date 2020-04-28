@@ -5,19 +5,34 @@
       <modal-input class="content_marginBottom" title="体重" unit="kg"></modal-input>
       <modal-input class="content_marginBottom" title="体脂肪率" unit="%"></modal-input>
       <modal-input class="content_marginBottom" title="摂取カロリー" unit="kcol"></modal-input>
-      <modal-button class="content_marginTop"></modal-button>
+      <modal-button class="content_marginTop" @click="recodeWeight"></modal-button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      weight: null,
+      fat: null,
+      calorie: null,
+    }
+  },
   methods: {
     clickEvent() {
       this.$emit("from-child");
     },
     stopEvent() {
       event.stopPropagation();
+    },
+    recodeWeight() {
+      console.log("ボタン押された");
+      this.$emit('addWeight', {
+        weight: this.weight,
+        fat: this.fat,
+        calorie: this.calorie,
+      });
     }
   },
   components: {

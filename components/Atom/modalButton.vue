@@ -13,6 +13,7 @@ export default {};
   height: 60px;
   background: rgb(26, 118, 210);
   border-radius: 10px;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
