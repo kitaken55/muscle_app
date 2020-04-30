@@ -1,7 +1,10 @@
 <template>
   <div class="app">
     <headerComponent>入力ページ</headerComponent>
-    <switchButton class="app__switchButton"></switchButton>
+    <div class="switchButton">
+      <div class="switchButton__left">記録</div>
+      <div class="switchButton__right" @click="ViewTransition">閲覧</div>
+    </div>
     <home-card
       class="app__homeCard"
       title="今日の体重測定"
@@ -17,7 +20,7 @@
     <home-card
       class="app__homeCard"
       title="今日の身体測定"
-      item1
+      item1="首"
       item2="肩"
       item3="胸"
       input1="cm"
@@ -38,7 +41,7 @@
 
     <button v-on:click="openModal">Click</button>
 
-    <open-modal v-if="showContent" @from-child="closeModal" @addWeight="createMeasures(index)"></open-modal>
+    <open-modal v-if="showContent" @from-child="closeModal"></open-modal>
     <open-modal2 v-if="showContent2" @from-child2="closeModal2"></open-modal2>
   </div>
 </template>
@@ -89,38 +92,6 @@ export default {
     dialog2Open(item) {
       this.dialog2 = true;
       this.dialog2_text = item;
-    },
-    //体重計測API
-    async createMeasures(emitValue) {
-      if (this.$cookies.get("login_cookie")) {
-        const test = JSON.parse(this.$cookies.get("login_cookie"));
-        const test2 = {
-          measure_params: {
-            body_weight: emitValue.weight,
-            fat: emitValue.fat,
-            calorie: emitValue.colorie,
-            date: this.today //ここはコンピューテッドでも行ける？
-          }
-        };
-        const header = {
-          Authorization: `Bearer ${test.token}`
-        };
-        await axios
-          //ここ変更させる。クエリで分岐
-          .post("measures/", test2, {
-            headers: header
-          })
-          .then(response => {
-            console.log(response.data);
-            console.log(this.measures_data);
-            this.measures_data.push(response.data);
-            alert("記録しました");
-            // this.reload();
-          })
-          .catch(error => {
-            alert(error);
-          });
-      }
     },
     //記録確認API
     kakunin() {
@@ -189,6 +160,9 @@ export default {
     },
     closeModal2() {
       this.showContent2 = false;
+    },
+    ViewTransition() {
+      this.$router.push("/homeRecord");
     }
   },
   created() {
@@ -275,4 +249,34 @@ export default {
   border: solid 1px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
 }
+
+
+//SwitchButton
+
+.switchButton {
+  height: 43px;
+  display: flex;
+  border: 1px solid white;
+  border-radius: 2px;
+  margin-top: 30px;
+
+  &__left {
+    width: 50%;
+    display: flex;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+  }
+
+  &__right {
+    width: 50%;
+    color: white;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 </style>

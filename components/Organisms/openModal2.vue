@@ -2,9 +2,23 @@
   <!-- モーダル -->
   <div id="overlay" @click="clickEvent">
     <div class="content" @click="stopEvent">
-      <modal-input class="content_marginBottom" title="肩" unit="cm"></modal-input>
-      <modal-input class="content_marginBottom" title="胸" unit="cm"></modal-input>
-      <modal-input class="content_marginBottom" title="腰" unit="cm"></modal-input>
+      <div style="height: 300px; overflow: scroll;">
+        <modal-input class="content_marginBottom" title="首" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="肩" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="胸" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="左二等筋" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="右二等筋" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="左前腕" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="右前腕" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="上腹部" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="下腹部" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="ウエスト" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="ヒップ" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="左太もも" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="右太もも" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="左ふくらはぎ" unit="cm"></modal-input>
+        <modal-input class="content_marginBottom" title="右ふくらはぎ" unit="cm"></modal-input>
+      </div>
       <modal-button class="content_marginTop"></modal-button>
     </div>
   </div>
@@ -59,6 +73,6 @@ export default {
 }
 
 .content_marginTop {
-    margin-top: 70px;
+  margin-top: 40px;
 }
 </style>

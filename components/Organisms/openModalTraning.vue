@@ -2,10 +2,19 @@
   <!-- モーダル -->
   <div id="overlay" @click="clickEvent">
     <div class="content" @click="stopEvent">
-      <modal-input class="content_marginBottom" v-model="weight" title="体重" unit="kg"></modal-input>
-      <modal-input class="content_marginBottom" title="体脂肪率" unit="%"></modal-input>
-      <modal-input class="content_marginBottom" title="摂取カロリー" unit="kcol"></modal-input>
-      <div class="modalButton" @click="createMeasures">
+      <div class="title">
+        <p class="title-text1">{{ syumoku.type }}</p>
+        <p class="title-text2">{{ syumoku.text }}</p>
+      </div>
+
+      <div class="input">
+          <input class="input-traning" type="number" placeholder="重量(kg)">
+          <input class="input-traning" type="number" placeholder="回数">
+          <input class="input-traning" type="number" placeholder="インターバルタイム">
+          <input class="input-traning" type="number" placeholder="自覚運動強度">
+      </div>
+
+      <div class="modalButton">
         <p class="modalButton__text">記録する</p>
       </div>
     </div>
@@ -13,7 +22,7 @@
 </template>
 
 <script>
-import axios from '~/plugins/axios'
+import axios from "~/plugins/axios";
 export default {
   data() {
     return {
@@ -22,44 +31,13 @@ export default {
       calorie: null
     };
   },
+  props:["syumoku"],
   methods: {
     clickEvent() {
       this.$emit("from-child");
     },
     stopEvent() {
       event.stopPropagation();
-    },
-
-    //体重計測API
-    async createMeasures() {
-      if (this.$cookies.get("login_cookie")) {
-        const test = JSON.parse(this.$cookies.get("login_cookie"));
-        const test2 = {
-          measure_params: {
-            body_weight: this.weight,
-            fat: this.fat,
-            calorie: this.colorie,
-            date: this.today
-          }
-        };
-        const header = {
-          Authorization: `Bearer ${test.token}`
-        };
-        await axios
-          //ここ変更させる。クエリで分岐
-          .post("measures/", test2, {
-            headers: header
-          })
-          .then(response => {
-            console.log(response);
-            // this.measures_data.push(response.data);
-            alert("記録しました");
-            this.$router.push("/homeRecord");
-          })
-          .catch(error => {
-            alert(error);
-          });
-      }
     }
   },
   components: {
@@ -70,6 +48,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+p {
+  margin: 0;
+}
+
 #overlay {
   z-index: 1;
 
@@ -91,7 +73,7 @@ export default {
   z-index: 2;
   width: 80%;
   height: 463px;
-  padding: 3em 2em;
+  padding: 1.5em 2em;
   border-radius: 5px;
   background: #fff;
 }
@@ -117,5 +99,29 @@ export default {
     font-weight: bold;
     color: white;
   }
+}
+
+.title {
+  text-align: center;
+}
+
+.title-text1 {
+  font-size: 12px;
+  background: gray;
+  display: inline;
+  padding: 5px 10px;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.title-text1 {
+  font-weight: bold;
+}
+
+.input-traning {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: 30px;
 }
 </style>
